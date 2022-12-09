@@ -1,0 +1,88 @@
+#---------------------------------------------------------------------
+# Global settings
+#---------------------------------------------------------------------
+global
+#---------------------------------------------------------------------
+# common defaults that all the 'listen' and 'backend' sections will
+# use if not designated in their block
+#---------------------------------------------------------------------
+defaults
+
+mode                    http
+log                     global
+option                  httplog
+option                  dontlognull
+option http-server-close
+option forwardfor       except 127.0.0.0/8
+option                  redispatch
+retries                 3
+timeout http-request    10s
+timeout queue           1m
+timeout connect         10s
+timeout client          1m
+timeout server          1m
+timeout http-keep-alive 10s
+timeout check           10s
+maxconn                 3000
+
+#---------------------------------------------------------------------
+# HAProxy Monitoring Config
+#---------------------------------------------------------------------
+#Haproxy Monitoring run on port 8080
+listen *:8080
+mode http
+option forwardfor
+option httpclose
+stats enable
+stats show-legends
+stats refresh 5s
+stats uri /stats                            #URL for HAProxy monitoring
+stats realm Haproxy\ Statistics
+stats auth Password123: Password123         #User and Password for login to the monitoring dashboard
+stats admin if TRUE
+default_backend flask                       #This is optionally for monitoring backend
+
+#---------------------------------------------------------------------
+# FrontEnd Configuration
+#---------------------------------------------------------------------
+frontend main
+bind *:80
+option http-server-close
+option forwardfor
+default_backend app
+
+#---------------------------------------------------------------------
+# BackEnd round robin as balance algorithm
+#---------------------------------------------------------------------
+backend app
+
+# Load Balancing Algorithms [ roundrobin | leastconn | source ]
+# 
+balance roundrobin
+option httpchk HEAD / HTTP/1.1\r\nHost:\ localhost
+
+#Check the server application is up and healty - 200 status code
+server app1 backend1:5000  	check 	#flask backend1
+server app2 backend2:5000  	check 	#flask backend2
+
+#$ =====================================================
+# frontend http-in
+#     bind *:80
+
+#     acl has_app1 path_beg /app1
+#     acl has_app2 path_beg /app2
+
+#     use_backend app1 if has_app1
+#     use_backend app2 if has_app2
+
+#     default_backend app2
+
+# backend app1
+#     ##reqrep ^([^\ ]*\ /)app1[/]?(.*)     \1\2
+#     http-request replace-path ^([^\ ]*\ /)app1[/]?(.*)     \1\2
+#     server app1 app1:80 check
+
+# backend app2
+#     ##reqrep ^([^\ ]*\ /)app2[/]?(.*)     \1\2
+#     http-request replace-path ^([^\ ]*\ /)app2[/]?(.*)     \1\2
+#     server app2 app2:80 check

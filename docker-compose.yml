@@ -1,0 +1,63 @@
+version: '3.9'
+
+services:
+  haproxy:
+    container_name: haproxy
+    hostname: haproxy.dev
+    build: 
+      context: ./files/haproxy
+      dockerfile: Dockerfile
+    volumes:
+      - ./files/haproxy/confs:/usr/local/etc/haproxy:rw
+    ports:
+      - "5080:80"
+    networks:
+      - frontend
+    restart: always
+  syslog:
+    container_name: logging
+    hostname: logging.dev
+    build:
+      context: ./files/logging
+      dockerfile: Dockerfile
+    volumes:
+      - logging:/sidecar
+    networks:
+      - backend
+      - frontend
+  app1:
+    build: 
+      context: ./files/app
+      dockerfile: Dockerfile
+    volumes:
+      - ./files/app:/app:rw
+    container_name: app1
+    hostname: app1.dev
+    ports:
+      - "5081:5000"
+    networks:
+      - backend
+      - frontend
+    depends_on:
+      - haproxy
+  app2:
+    build: 
+      context: ./files/app
+      dockerfile: Dockerfile
+    volumes:
+      - ./files/app:/app:rw
+    container_name: app2
+    hostname: app2.dev
+    ports:
+      - "5082:5000"
+    networks:
+      - backend
+      - frontend
+    depends_on:
+      - haproxy
+
+networks:
+  frontend:
+  backend:
+volumes:
+  logging:
