@@ -1,4 +1,4 @@
-FROM haproxy:2.7
+FROM haproxy:2.6
 
 LABEL env="dev"
 LABEL MANTAINER="alexmbarbosa"
