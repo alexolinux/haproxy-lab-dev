@@ -32,7 +32,6 @@ services:
     networks:
       - backend
       - frontend
-
   app2:
     build: 
       context: ./files/app
@@ -46,7 +45,6 @@ services:
     networks:
       - backend
       - frontend
-
   app3:
     build: 
       context: ./files/app
