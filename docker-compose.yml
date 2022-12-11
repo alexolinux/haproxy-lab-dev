@@ -12,20 +12,13 @@ services:
     ports:
       - "80:80"
       - "1936:1936"
+    links:
+      - "app1"
+      - "app2"
+      - "app3"
     networks:
       - frontend
     restart: always
-  syslog:
-    container_name: logging
-    hostname: logging.dev
-    build:
-      context: ./files/logging
-      dockerfile: Dockerfile
-    volumes:
-      - logging:/sidecar
-    networks:
-      - backend
-      - frontend
   app1:
     build: 
       context: ./files/app
@@ -33,14 +26,13 @@ services:
     volumes:
       - ./files/app:/app:rw
     container_name: app1
-    hostname: app1.dev
+    #hostname: app.dev
     ports:
-      - "8001:5000"
+      - "5000"
     networks:
       - backend
       - frontend
-    depends_on:
-      - haproxy
+
   app2:
     build: 
       context: ./files/app
@@ -48,17 +40,27 @@ services:
     volumes:
       - ./files/app:/app:rw
     container_name: app2
-    hostname: app2.dev
+    #hostname: app.dev
     ports:
-      - "8002:5000"
+      - "5000"
     networks:
       - backend
       - frontend
-    depends_on:
-      - haproxy
+
+  app3:
+    build: 
+      context: ./files/app
+      dockerfile: Dockerfile
+    volumes:
+      - ./files/app:/app:rw
+    container_name: app3
+    #hostname: app.dev
+    ports:
+      - "5000"
+    networks:
+      - backend
+      - frontend
 
 networks:
   frontend:
   backend:
-volumes:
-  logging:
