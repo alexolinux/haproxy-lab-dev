@@ -11,6 +11,7 @@ services:
       - ./files/haproxy/confs:/usr/local/etc/haproxy:rw
     ports:
       - "80:80"
+      - "1936:1936"
     networks:
       - frontend
     restart: always
@@ -34,7 +35,7 @@ services:
     container_name: app1
     hostname: app1.dev
     ports:
-      - "5081:5000"
+      - "8001:5000"
     networks:
       - backend
       - frontend
@@ -49,7 +50,7 @@ services:
     container_name: app2
     hostname: app2.dev
     ports:
-      - "5082:5000"
+      - "8002:5000"
     networks:
       - backend
       - frontend

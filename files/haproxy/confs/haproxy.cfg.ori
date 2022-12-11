@@ -1,3 +1,6 @@
+#-- https://www.haproxy.com/documentation/hapee/latest/configuration/config-sections/defaults/
+#-- https://www.haproxy.com/blog/the-four-essential-sections-of-an-haproxy-configuration/
+
 #---------------------------------------------------------------------
 # Global settings
 #---------------------------------------------------------------------
