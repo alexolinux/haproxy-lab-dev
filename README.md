@@ -56,6 +56,8 @@ cd haproxy-lab-dev
 docker-compose up -d
 ```
 
+![docker-compose](compose.png "docker-compose up -d")
+
 Listening port validation (`haproxy :80/ haproxy stats :1936`):
 
 ```sh
