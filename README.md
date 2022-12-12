@@ -56,11 +56,32 @@ cd haproxy-lab-dev
 docker-compose up -d
 ```
 
+Listening port validation (`haproxy :80/ haproxy stats :1936`):
+
+```sh
+❯ netstat -lptn | grep -E ':80|:1936'
+
+tcp        0      0 0.0.0.0:80              0.0.0.0:*               LISTEN      -                   
+tcp        0      0 0.0.0.0:1936            0.0.0.0:*               LISTEN      -                   
+tcp6       0      0 :::80                   :::*                    LISTEN      -                   
+tcp6       0      0 :::1936                 :::*                    LISTEN      -
+```
+
+Request validation (Port 80):
+
+```sh
+❯ curl localhost
+Hello from FLASK. My Hostname is: 32f3322dfb4b 
+❯ curl localhost
+Hello from FLASK. My Hostname is: b9cb0fd7af21 
+❯ curl localhost
+Hello from FLASK. My Hostname is: a4128b71361c
+```
+
 ---
 ### **Author:** Alex Mendes
 
 **LinkedIn:** https://www.linkedin.com/in/mendesalex/
-
 
 ### **References:**
 
