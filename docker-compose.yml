@@ -26,7 +26,7 @@ services:
     volumes:
       - ./files/app:/app:rw
     container_name: app1
-    #hostname: app.dev
+    hostname: app1.dev
     ports:
       - "5000"
     networks:
@@ -39,7 +39,7 @@ services:
     volumes:
       - ./files/app:/app:rw
     container_name: app2
-    #hostname: app.dev
+    hostname: app2.dev
     ports:
       - "5000"
     networks:
@@ -52,7 +52,7 @@ services:
     volumes:
       - ./files/app:/app:rw
     container_name: app3
-    #hostname: app.dev
+    hostname: app3.dev
     ports:
       - "5000"
     networks:
