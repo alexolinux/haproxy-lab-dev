@@ -80,6 +80,11 @@ Hello from FLASK. My Hostname is: b9cb0fd7af21
 Hello from FLASK. My Hostname is: a4128b71361c
 ```
 
+### Go beyond
+
+> If you want to test scenarios, do it through `haproxy.cfg` and backend option customizations. You need to implement your backend and define the haproxy backend configuration (replacing this python-flask templates).
+
+
 ---
 ### **Author:** Alex Mendes
 
