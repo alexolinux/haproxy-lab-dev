@@ -73,11 +73,11 @@ Request validation (Port 80):
 
 ```sh
 ❯ curl localhost
-Hello from FLASK. My Hostname is: 32f3322dfb4b 
+Hello from FLASK. My Hostname is: app1.dev 
 ❯ curl localhost
-Hello from FLASK. My Hostname is: b9cb0fd7af21 
+Hello from FLASK. My Hostname is: app2.dev 
 ❯ curl localhost
-Hello from FLASK. My Hostname is: a4128b71361c
+Hello from FLASK. My Hostname is: app3.dev
 ```
 
 ### Go beyond
