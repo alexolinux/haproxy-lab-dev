@@ -10,8 +10,8 @@ For this lab, the following tools were used:
 * **Docker/docker-compose:** The main challenge here was coming up with a way to configure haproxy so that it could communicate with backends through containers layer.
 
 * **Frontend:** 
-  * Offical Docker [Haproxy 2.6](https://hub.docker.com/_/haproxy/\)/).
-  * HAPROXY custom configuration (`haproxy.cfg`) in Haproxy confs folder.
+  * Offical Docker **[HAPROXY](https://hub.docker.com/_/haproxy)**.
+  * **HAPROXY** custom configuration (`haproxy.cfg`) in Haproxy confs folder.
 * **Backends:** 
   * [My personal Flask Python Image](https://hub.docker.com/r/alexmbarbosa/flask-python3).
   * Simple flask code (`app.py`) + requirements in Flask app folder.
