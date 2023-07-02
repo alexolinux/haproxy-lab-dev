@@ -1,4 +1,5 @@
-# Docker HAProxy Playground
+# haproxy-lab-dev
+
 
 This is a project to be used as an HAProxy lab environment, allowing communication between HAProxy and backend application services.
 
