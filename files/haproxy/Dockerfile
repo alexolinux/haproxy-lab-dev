@@ -1,4 +1,4 @@
-FROM haproxy:2.6
+FROM haproxy:latest
 
 LABEL env="dev"
 LABEL MANTAINER="alexmbarbosa"
