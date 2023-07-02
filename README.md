@@ -10,6 +10,13 @@ For this lab, the following tools were used:
 
 * **Docker/docker-compose:** The main challenge here was coming up with a way to configure haproxy so that it could communicate with backends through containers layer.
 
+> `docker-compose.yml` is configured to use the local register name for `haproxy.dev`. You should configure your desired name in `/etc/hosts`:
+
+```shell
+# haproxy-lab hostname example:
+127.0.0.1 haproxy.dev
+```
+
 * **Frontend:** 
   * Offical Docker **[HAPROXY](https://hub.docker.com/_/haproxy)**.
   * **HAPROXY** custom configuration (`haproxy.cfg`) in Haproxy confs folder.
